@@ -1,0 +1,19 @@
+{
+  "name": "koapp-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "totegsito",
+  "license": "MIT",
+  "dependencies": {
+    "generator-koapp-module": "^1.1.1",
+    "generator-koapp-spinner": "^0.1.0",
+    "generator-koapp-theme": "^0.15.0",
+    "shelljs": "^0.7.5",
+    "vorpal": "^1.11.4",
+    "yo": "^1.8.5"
+  }
+}
