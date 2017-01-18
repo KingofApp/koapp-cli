@@ -2,13 +2,17 @@
   "name": "koapp-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "bin":  {
+    "koapp" : "bin/koapp-cli.js"
+  },
+  "main": "./lib/index.js",
   "scripts": {
     "test": "test"
   },
-  "author": "totegsito",
+  "author": "kingofapp",
   "license": "MIT",
   "dependencies": {
+    "cordova": "^6.4.0",
     "generator-koapp-module": "^1.1.1",
     "generator-koapp-spinner": "^0.1.0",
     "generator-koapp-theme": "^0.15.0",
