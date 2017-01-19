@@ -1,25 +1,20 @@
 {
   "name": "koapp-cli",
-  "version": "1.0.0",
-  "description": "",
-  "bin":  {
-    "koapp" : "bin/koapp-cli.js"
+  "version": "0.0.1",
+  "description": "King of App Command Line Tools",
+  "bin": {
+    "koapp": "bin/koapp-cli.js"
   },
   "main": "./lib/index.js",
   "scripts": {
     "test": "test",
-    "preinstall": "npm i -g cordova"
-  },
+    "postinstall": "npm i -g cordova && npm i -g yo && npm i -g generator-koapp-module && npm i -g generator-koapp-theme && npm i -g generator-koapp-spinner"
+    },
   "author": "kingofapp",
   "license": "MIT",
   "dependencies": {
-    "cordova": "^6.4.0",
-    "generator-koapp-module": "^1.1.1",
-    "generator-koapp-spinner": "^0.1.0",
-    "generator-koapp-theme": "^0.15.0",
+    "inquirer": "^2.0.0",
     "koapp": "0.0.5",
-    "shelljs": "^0.7.5",
-    "vorpal": "^1.11.4",
-    "yo": "^1.8.5"
+    "shelljs": "^0.7.5"
   }
 }
