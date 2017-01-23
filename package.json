@@ -10,7 +10,7 @@
     "test": "test",
     "postinstall": "npm i -g cordova && npm i -g yo && npm i -g generator-koapp-module && npm i -g generator-koapp-theme && npm i -g generator-koapp-spinner"
     },
-  "author": "kingofapp",
+  "author": "King of App",
   "license": "MIT",
   "dependencies": {
     "inquirer": "^2.0.0",
