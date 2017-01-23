@@ -32,29 +32,14 @@ koapp-cli
 
   Create a new module, spinner or theme. An assistant will ask you for some parameters.
 
-**add <plugin> <plugin-name>**
 
-  Download a plugin and install it in your project.
-  
 **serve**
 
-
-
-**build**
-
-
-
-**emulate**
-
-
+  This command will launch King of App Visualizer at ```http://localhost:9001```. You need to be inside the King of App Visualizer folder of your project.
 
 **help**
 
   Display the list of avaliable commands and some help.
-
-**exit**
-
-  Close King of App CLI.
 
 
 ### License
