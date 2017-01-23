@@ -8,7 +8,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "test": "test",
-    "postinstall": "sudo npm i -g cordova && sudo npm i -g yo && sudo npm i -g generator-koapp-module && sudo npm i -g generator-koapp-theme && sudo npm i -g generator-koapp-spinner"
+    "postinstall": "npm i -g cordova && npm i -g yo && npm i -g generator-koapp-module && npm i -g generator-koapp-theme && npm i -g generator-koapp-spinner"
     },
   "author": "King of App",
   "license": "MIT",
