@@ -5,9 +5,16 @@
 
 ### Installation
 
-You have to install using [npm](https://www.npmjs.com/):
+First, you need [npm](https://www.npmjs.com/). Once you have installed that run the following commands:
 
 ```bash
+#dependencies
+npm install -g cordova
+npm install -g yo
+npm install -g generator-koapp-module
+npm install -g generator-koapp-theme
+npm install -g generator-koapp-spinner
+#koapp-cli
 npm install -g koapp-cli
 ```
 
@@ -35,6 +42,10 @@ koapp
 * ``serve``
 
   This command will launch King of App Visualizer at ```http://localhost:9001```. You need to be inside the King of App Visualizer folder of your project.
+
+* ``add``
+
+  Use this command to download and install modules, themes or spinners in your app. After you download a module, an assistant will guide you with the routes.
 
 * ``help``
 
