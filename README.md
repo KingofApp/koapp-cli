@@ -43,9 +43,13 @@ koapp
 
   This command will launch King of App Visualizer at ```http://localhost:9001```. You need to be inside the King of App Visualizer folder of your project.
 
-* ``add``
+* ``add <module|spinner|theme> <pluginName>``
 
   Use this command to download and install modules, themes or spinners in your app. After you download a module, an assistant will guide you with the routes.
+
+* ``build <platform>``
+
+  Build your Cordova project with all its dependencies for the selected platform. You need [Android SDK](https://developer.android.com/studio/index.html?hl=es-419) or [XCode](https://developer.apple.com/xcode/) to build your project.
 
 * ``help``
 
