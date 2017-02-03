@@ -1,6 +1,6 @@
 {
   "name": "koapp-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "King of App Command Line Tools",
   "bin": {
     "koapp": "bin/koapp-cli.js"
@@ -10,6 +10,13 @@
     "test": "test"
   },
   "author": "King of App",
+  "contributors": [
+    {
+      "name": "Fran Quesada",
+      "email": "paco@kingofapp.es",
+      "url": "https://github.com/totegsito"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "async": "^2.1.4",
