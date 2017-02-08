@@ -33,7 +33,7 @@ koapp
 
 * ``init <template>``
 
-  Create a new Cordova Project on the given path and download our [Visualizer]('http://docs.kingofapp.com/visualizer') to preview your app.
+  Create a new King of App Project on the given path and download our [Visualizer]('http://docs.kingofapp.com/visualizer') to preview your app.
 
 * ``create <module|spinner|theme>``
 
@@ -49,7 +49,7 @@ koapp
 
 * ``build <platform>``
 
-  Build your Cordova project with all its dependencies for the selected platform. You need [Android SDK](https://developer.android.com/studio/index.html?hl=es-419) or [XCode](https://developer.apple.com/xcode/) to build your project.
+  Create and build your Cordova project with all its dependencies for the selected platform. You need [Android SDK](https://developer.android.com/studio/index.html?hl=es-419) or [XCode](https://developer.apple.com/xcode/) to build your project.
 
 * ``help``
 
