@@ -2,20 +2,23 @@
 
 ![Koa-logo](http://kingofapp.es/wp-content/uploads/2015/02/logoking-r1.png)
 
-
 ### Installation
 
-First, you need [npm](https://www.npmjs.com/). Once you have installed that run the following commands:
-
 ```bash
-#dependencies
-npm install -g cordova
-npm install -g yo
-npm install -g generator-koapp-module
-npm install -g generator-koapp-theme
-npm install -g generator-koapp-spinner
-#koapp-cli
-npm install -g koapp-cli
+$ npm install -g koapp-cli
+```
+### Requirements
+- ImageMagick installed (*Mac*: `brew install imagemagick`, *Debian/Ubuntu*: `sudo apt-get install imagemagick`, *Windows*: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))
+
+- [npm](https://www.npmjs.com/). Once you have installed it run the following commands:
+```bash
+$ npm install -g cordova
+$ npm install -g yo
+$ npm install -g generator-koapp-module
+$ npm install -g generator-koapp-theme
+$ npm install -g generator-koapp-spinner
+$ npm install -g cordova-icon
+$ npm install -g cordova-splash
 ```
 
 If you have issues with ``EACCESS`` you should check [npm guide to fix permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
@@ -25,33 +28,31 @@ If you have issues with ``EACCESS`` you should check [npm guide to fix permissio
 
 King of App Command-Line Interface provides developers some helpful commands that can assist you while you build your app.
 
-Launching King of App CLI is very easy:
+You have the following command tools which you can use:
 
-```bash
-koapp
-```
-
-* ``init <template>``
+* ``koapp init <template>``
 
   Create a new King of App Project on the given path and download our [Visualizer]('http://docs.kingofapp.com/visualizer') to preview your app.
 
-* ``create <module|spinner|theme>``
+* ``koapp create <module|spinner|theme>``
 
   Create a new module, spinner or theme. An assistant will ask you for some parameters.
 
-* ``serve``
+* ``koapp serve``
 
   This command will launch King of App Visualizer at ```http://localhost:9001```. You need to be inside the King of App Visualizer folder of your project.
 
-* ``add <module|spinner|theme> <pluginName>``
+* ``koapp add <module|spinner|theme> <pluginName> [moduleName]``
 
   Use this command to download and install modules, themes or spinners in your app. After you download a module, an assistant will guide you with the routes.
 
-* ``build <platform>``
+* ``koapp build <cordovaProjectName> <platform>``
 
   Create and build your Cordova project with all its dependencies for the selected platform. You need [Android SDK](https://developer.android.com/studio/index.html?hl=es-419) or [XCode](https://developer.apple.com/xcode/) to build your project.
 
-* ``help``
+  If you want your own icon and splash, you can replace them on 'com.kingofapp.visualizer/www/images' yourself. The splash screen image should be 2208x2208 px with a square center of around 1200x1200 px
+
+* ``koapp help``
 
   Display the list of avaliable commands and some help.
 
