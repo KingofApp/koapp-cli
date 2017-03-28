@@ -30,7 +30,7 @@ King of App Command-Line Interface provides developers some helpful commands tha
 
 You have the following command tools which you can use:
 
-* ``koapp init <template>``
+* ``koapp init <projectName>``
 
   Create a new King of App Project on the given path and download our [Visualizer]('http://docs.kingofapp.com/visualizer') to preview your app.
 
