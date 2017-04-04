@@ -34,17 +34,17 @@ You have the following command tools which you can use:
 
   Create a new King of App Project on the given path and download our [Visualizer]('http://docs.kingofapp.com/visualizer') to preview your app.
 
-* ``koapp create <module|spinner|theme>``
+* ``koapp create <module|spinner|theme|service>``
 
-  Create a new module, spinner or theme. An assistant will ask you for some parameters.
+  Create a new module, spinner, theme or service. An assistant will ask you for some parameters.
 
 * ``koapp serve``
 
   This command will launch King of App Visualizer at ```http://localhost:9001```. You need to be inside the King of App Visualizer folder of your project.
 
-* ``koapp add <module|spinner|theme> <pluginName> [moduleName]``
+* ``koapp add <module|spinner|theme|service> <pluginName> [moduleName]``
 
-  Use this command to download and install modules, themes or spinners in your app. After you download a module, an assistant will guide you with the routes.
+  Use this command to download and install modules, themes, spinners or services in your app. After you download a module, an assistant will guide you with the routes.
 
 * ``koapp build <cordovaProjectName> <platform>``
 
