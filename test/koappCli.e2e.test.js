@@ -191,7 +191,6 @@
   });
 
   // Helper functions
-
   function changeFolderToTest(options) {
     var command = 'koapp add ' + options.pluginType + ' ' + options.pluginName;
     var visualizerFolder = options.env === 'standard' ?
@@ -231,25 +230,24 @@
 
       if (options.action && options.action === 'remove') {
         options.pluginType === 'service' ?
-                       removeServiceStructureExpects(options, jsonData) :
-                       removeModuleStructureExpects(options, jsonData) ;
+                               removeServiceStructureExpects(options, jsonData) :
+                               removeModuleStructureExpects(options, jsonData) ;
       } else {
         options.pluginType === 'service' ?
-                       performAddServiceExpects(options, jsonData) :
-                       performAddThemeExpects(options, jsonData);
+                               addServiceExpects(options, jsonData) :
+                               addThemeExpects(options, jsonData);
       }
     });
   }
 
-  function performAddServiceExpects(options, jsonData) {
+  function addServiceExpects(options, jsonData) {
     expect(jsonData).to.have.property('services');
     expect(jsonData.services).to.have.property('test');
     expect(jsonData.services.test.name).to.be.equal('test');
-    checkFolder(options);
+    checkPluginFolder(options);
   }
 
-  function performAddThemeExpects(options, jsonData) {
-    console.log(options);
+  function addThemeExpects(options, jsonData) {
     expect(jsonData).to.have.property('config');
     expect(jsonData.config).to.have.property(options.pluginType);
     expect(jsonData.config[options.pluginType]).to.have.property('identifier');
@@ -260,17 +258,17 @@
   function removeServiceStructureExpects(options, jsonData) {
     expect(jsonData).to.have.property('services');
     expect(jsonData.services).to.not.have.property('');
-    removeFolder(options);
+    removePluginFolder(options);
   }
 
   function removeModuleStructureExpects(options, jsonData) {
     expect(jsonData).to.have.property('modules');
     expect(jsonData.modules).to.have.property('/menu-abcd');
     expect(jsonData.modules['/menu-abcd']).to.not.have.property('/elements-abcd');
-    removeFolder(options);
+    removePluginFolder(options);
   }
 
-  function checkFolder(options) {
+  function checkPluginFolder(options) {
     shell.cd('..');
     shell.cd('./' + options.pluginType + 's');
     var files = ls().stdout.split('\n');
@@ -279,7 +277,7 @@
     options.done();
   }
 
-  function removeFolder(options) {
+  function removePluginFolder(options) {
     shell.cd('..');
     shell.cd('./' + options.pluginType + 's');
     shell.rm('-rf', './' + options.pluginName);
