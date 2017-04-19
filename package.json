@@ -1,13 +1,13 @@
 {
   "name": "koapp-cli",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "King of App Command Line Tools",
   "bin": {
     "koapp": "bin/koapp-cli.js"
   },
   "main": "./lib/index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha tests/*.test.js"
   },
   "author": "King of App",
   "contributors": [
@@ -30,5 +30,9 @@
     "koapp": "^0.2.2",
     "lodash": "^4.17.4",
     "shelljs": "^0.7.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
