@@ -67,19 +67,6 @@
 
       describe('on a standard koapp project', function() {
         describe('on success', function() {
-          xit('should add a module to a standard koapp project', function(done) {
-            var command = 'koapp add module demo';
-            shell.cd('../testProject/com.kingofapp.visualizer/www/modules');
-
-            process.stdin.on('readable', function(data) {
-              stdout.write('');
-            });
-
-            shell.exec(command, function(err) {
-              done();
-            });
-          });
-
           it('should add a service to a standard koapp project', function(done) {
             changeFolderToTest({
               env: 'standard',
@@ -207,25 +194,25 @@
       expect(err).to.be.equal(0);
 
       var files = shell.ls().stdout.split('\n');
-      
+
       if (options.action === 'remove') {
         checkStructureFile(options);
       } else {
         expect(files.indexOf(options.pluginName)).to.be.not.equal(-1);
         checkStructureFile(options);
-      }                 
+      }
     });
   }
 
   function checkStructureFile(options) {
     shell.cd('./../core');
     var files = shell.ls().stdout.split('\n');
-    
+
     expect(files.indexOf('structure.json')).to.be.not.equal(-1);
 
     fs.readFile('structure.json', 'utf-8', function(err, data) {
       expect(err).to.be.a('null');
-      
+
       var jsonData = JSON.parse(data);
 
       if (options.action && options.action === 'remove') {
@@ -283,7 +270,7 @@
     shell.rm('-rf', './' + options.pluginName);
 
     var files = ls().stdout.split('\n');
-    
+
     expect(files.indexOf(options.pluginName)).to.be.equal(-1);
     options.done();
   }

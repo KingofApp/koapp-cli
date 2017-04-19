@@ -7,7 +7,7 @@
   },
   "main": "./lib/index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha tests/*.test.js"
   },
   "author": "King of App",
   "contributors": [
