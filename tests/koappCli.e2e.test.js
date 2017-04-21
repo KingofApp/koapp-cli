@@ -10,7 +10,7 @@
   var projectNameDevMock         = 'testProjectDev';
 
   describe('[e2e] koappCli', function() {
-    this.timeout(300000);
+    this.timeout(600000);
 
     describe('init test', function() {
       describe('on success', function () {
