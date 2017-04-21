@@ -17,6 +17,7 @@ $ npm install -g yo
 $ npm install -g generator-koapp-module
 $ npm install -g generator-koapp-theme
 $ npm install -g generator-koapp-spinner
+$ npm install -g generator-koapp-service
 $ npm install -g cordova-icon
 $ npm install -g cordova-splash
 ```
