@@ -1,6 +1,6 @@
 {
   "name": "koapp-cli",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "King of App Command Line Tools",
   "bin": {
     "koapp": "bin/koapp-cli.js"
@@ -25,9 +25,10 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.1.4",
+    "console.mute": "^0.3.0",
     "inquirer": "^2.0.0",
     "jsonfile": "^2.4.0",
-    "koapp": "^0.2.2",
+    "koapp": "^0.3.0",
     "lodash": "^4.17.4",
     "shelljs": "^0.7.5"
   },
