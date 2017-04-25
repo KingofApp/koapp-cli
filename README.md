@@ -1,6 +1,6 @@
 # koapp-cli
 
-![Koa-logo](http://kingofapp.es/wp-content/uploads/2015/02/logoking-r1.png)
+![Koa-logo](https://s3-eu-west-1.amazonaws.com/images.kingofapp.com/logo/logo%2Bking%403x.png)
 
 ### Installation
 
@@ -52,6 +52,10 @@ You have the following command tools which you can use:
   Create and build your Cordova project with all its dependencies for the selected platform. You need [Android SDK](https://developer.android.com/studio/index.html?hl=es-419) or [XCode](https://developer.apple.com/xcode/) to build your project.
 
   If you want your own icon and splash, you can replace them on 'com.kingofapp.visualizer/www/images' yourself. The splash screen image should be 2208x2208 px with a square center of around 1200x1200 px
+
+* ``koapp emulate <platform>``
+
+  Emulate your app using native Android or IOs emulator.
 
 * ``koapp help``
 
