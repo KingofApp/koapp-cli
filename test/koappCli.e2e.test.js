@@ -12,7 +12,7 @@
   describe('[e2e] koappCli', function() {
     this.timeout(600000);
 
-    describe('init test', function() {
+    describe('init', function() {
       describe('on success', function () {
         it('should create a standard koapp project', function(done) {
           var command = 'koapp init ' + projectNameMock;
@@ -59,7 +59,7 @@
       });
     });
 
-    describe('add test', function() {
+    describe('add', function() {
       beforeEach(function(done) {
         shell.cd(__dirname);
         done();
@@ -128,7 +128,7 @@
       });
     });
 
-    describe('remove test', function() {
+    describe('remove', function() {
       beforeEach(function(done) {
         shell.cd(__dirname);
         done();
@@ -138,7 +138,7 @@
         describe('on success', function() {
           it('should remove a module from a standard koapp project', function(done) {
             var command = 'koapp remove module "/menu-abcd/elements-abcd"';
-            shell.cd('../testProject/com.kingofapp.visualizer/www/modules');
+            shell.cd('../testProject');
 
             testPlugin({
               pluginType: 'module',
@@ -151,7 +151,7 @@
 
           it('should remove a service from a standard koapp project', function(done) {
             var command = 'koapp remove service test';
-            shell.cd('../testProject/com.kingofapp.visualizer/www/modules');
+            shell.cd('../testProject');
 
             testPlugin({
               pluginType: 'service',
@@ -165,24 +165,24 @@
       });
     });
 
-    after(function(done) {
-      shell.cd('../../../..');
-      shell.rm('-rf', ['./testProject', './testProjectNoDeps', './testProjectDev']);
+    // after(function(done) {
+    //   shell.cd('../../../..');
+    //   shell.rm('-rf', ['./testProject', './testProjectNoDeps', './testProjectDev']);
 
-      var files = shell.ls().stdout;
-      expect(files.indexOf(projectNameMock)).to.be.equal(-1);
-      expect(files.indexOf(projectNameWithoutDepsMock)).to.be.equal(-1);
-      expect(files.indexOf(projectNameDevMock)).to.be.equal(-1);
-      done();
-    });
+    //   var files = shell.ls().stdout;
+    //   expect(files.indexOf(projectNameMock)).to.be.equal(-1);
+    //   expect(files.indexOf(projectNameWithoutDepsMock)).to.be.equal(-1);
+    //   expect(files.indexOf(projectNameDevMock)).to.be.equal(-1);
+    //   done();
+    // });
   });
 
   // Helper functions
   function changeFolderToTest(options) {
     var command = 'koapp add ' + options.pluginType + ' ' + options.pluginName;
     var visualizerFolder = options.env === 'standard' ?
-                                           './../' + projectNameMock + '/com.kingofapp.visualizer/www/' + options.pluginType + 's' :
-                                           './../' + projectNameDevMock + '/com.kingofapp.visualizer.dev/www/' + options.pluginType + 's';
+                                           './../' + projectNameMock :
+                                           './../' + projectNameDevMock;
     shell.cd(visualizerFolder);
 
     options.command = command;
