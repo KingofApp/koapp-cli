@@ -60,13 +60,13 @@
     });
 
     describe('add', function() {
-      beforeEach(function(done) {
-        shell.cd(__dirname);
-        done();
-      });
-
       describe('on a standard koapp project', function() {
         describe('on success', function() {
+          beforeEach(function(done) {
+            shell.cd(__dirname);
+            done();
+          });
+
           it('should add a service to a standard koapp project', function(done) {
             changeFolderToTest({
               env: 'standard',
@@ -98,6 +98,11 @@
 
       describe('on a dev koapp project', function() {
         describe('on success', function() {
+          beforeEach(function(done) {
+            shell.cd(__dirname);
+            done();
+          });
+
           it('should add a service to a dev koapp project', function(done) {
             changeFolderToTest({
               env: 'dev',
@@ -129,16 +134,15 @@
     });
 
     describe('remove', function() {
-      beforeEach(function(done) {
-        shell.cd(__dirname);
-        done();
-      });
-
       describe('on a standard koapp project', function() {
         describe('on success', function() {
+          beforeEach(function(done) {
+            shell.cd(__dirname);
+            done();
+          });
+
           it('should remove a module from a standard koapp project', function(done) {
-            var command = 'koapp remove module "/menu-abcd/elements-abcd"';
-            shell.cd('../testProject');
+            var command = 'koapp remove module demo';
 
             testPlugin({
               pluginType: 'module',
@@ -151,7 +155,6 @@
 
           it('should remove a service from a standard koapp project', function(done) {
             var command = 'koapp remove service test';
-            shell.cd('../testProject');
 
             testPlugin({
               pluginType: 'service',
@@ -179,7 +182,10 @@
 
   // Helper functions
   function changeFolderToTest(options) {
-    var command = 'koapp add ' + options.pluginType + ' ' + options.pluginName;
+    var command = options.env === 'standard' ?
+                                  'koapp add ' + options.pluginType + ' ' + options.pluginName :
+                                  'koapp add ' + options.pluginType + ' ' + options.pluginName + ' dev';
+    console.log(command);
     var visualizerFolder = options.env === 'standard' ?
                                            './../' + projectNameMock :
                                            './../' + projectNameDevMock;
@@ -193,9 +199,13 @@
     shell.exec(options.command, function(err) {
       expect(err).to.be.equal(0);
 
+      var visualizerFolder = options.env === 'standard' ? 'com.kingofapp.visualizer' : 'com.kingofapp.visualizer.dev';
+
+      shell.cd('./' + visualizerFolder + '/www/' + options.pluginType + 's');
       var files = shell.ls().stdout.split('\n');
 
       if (options.action === 'remove') {
+        expect(files.indexOf(options.pluginName)).to.be.equal(-1);
         checkStructureFile(options);
       } else {
         expect(files.indexOf(options.pluginName)).to.be.not.equal(-1);
