@@ -72,6 +72,7 @@
               env: 'standard',
               pluginType: 'service',
               pluginName: 'test',
+              action: 'add',
               done: done
             });
           });
@@ -81,6 +82,7 @@
               env: 'standard',
               pluginType: 'theme',
               pluginName: 'candy',
+              action: 'add',
               done: done
             });
           });
@@ -90,6 +92,7 @@
               env: 'standard',
               pluginType: 'spinner',
               pluginName: 'fitness',
+              action: 'add',
               done: done
             });
           });
@@ -108,6 +111,7 @@
               env: 'dev',
               pluginType: 'service',
               pluginName: 'test',
+              action: 'add',
               done: done
             });
           });
@@ -117,6 +121,7 @@
               env: 'dev',
               pluginType: 'theme',
               pluginName: 'candy',
+              action: 'add',
               done: done
             });
           });
@@ -126,6 +131,7 @@
               env: 'dev',
               pluginType: 'spinner',
               pluginName: 'fitness',
+              action: 'add',
               done: done
             });
           });
@@ -141,25 +147,31 @@
             done();
           });
 
-          it('should remove a module from a standard koapp project', function(done) {
-            var command = 'koapp remove module demo';
+          // xit('should remove a module from a standard koapp project', function(done) {
+          //   changeFolderToTest({
+          //     pluginType: 'module',
+          //     pluginName: '/menu-abcd/elements-abcd',
+          //     command: command,
+          //     action: 'remove',
+          //     env: 'standard',
+          //     done: done
+          //   });
+          // });
 
-            testPlugin({
-              pluginType: 'module',
-              pluginName: 'demo',
-              command: command,
+          it('should remove a service from a standard koapp project', function(done) {
+            changeFolderToTest({
+              pluginType: 'service',
+              pluginName: 'test',
               action: 'remove',
+              env: 'standard',
               done: done
             });
           });
 
-          it('should remove a service from a standard koapp project', function(done) {
-            var command = 'koapp remove service test';
-
-            testPlugin({
+          it('should remove a service from a development koapp project', function(done) {
+            changeFolderToTest({
               pluginType: 'service',
               pluginName: 'test',
-              command: command,
               action: 'remove',
               done: done
             });
@@ -168,24 +180,23 @@
       });
     });
 
-    // after(function(done) {
-    //   shell.cd('../../../..');
-    //   shell.rm('-rf', ['./testProject', './testProjectNoDeps', './testProjectDev']);
+    after(function(done) {
+      shell.cd('../../../..');
+      shell.rm('-rf', ['./testProject', './testProjectNoDeps', './testProjectDev']);
 
-    //   var files = shell.ls().stdout;
-    //   expect(files.indexOf(projectNameMock)).to.be.equal(-1);
-    //   expect(files.indexOf(projectNameWithoutDepsMock)).to.be.equal(-1);
-    //   expect(files.indexOf(projectNameDevMock)).to.be.equal(-1);
-    //   done();
-    // });
+      var files = shell.ls().stdout;
+      expect(files.indexOf(projectNameMock)).to.be.equal(-1);
+      expect(files.indexOf(projectNameWithoutDepsMock)).to.be.equal(-1);
+      expect(files.indexOf(projectNameDevMock)).to.be.equal(-1);
+      done();
+    });
   });
 
   // Helper functions
   function changeFolderToTest(options) {
     var command = options.env === 'standard' ?
-                                  'koapp add ' + options.pluginType + ' ' + options.pluginName :
-                                  'koapp add ' + options.pluginType + ' ' + options.pluginName + ' dev';
-    console.log(command);
+                                  'koapp ' + options.action + ' ' + options.pluginType + ' "' + options.pluginName + '"':
+                                  'koapp ' + options.action + ' ' + options.pluginType + ' "' + options.pluginName + '" dev';
     var visualizerFolder = options.env === 'standard' ?
                                            './../' + projectNameMock :
                                            './../' + projectNameDevMock;
@@ -205,7 +216,7 @@
       var files = shell.ls().stdout.split('\n');
 
       if (options.action === 'remove') {
-        expect(files.indexOf(options.pluginName)).to.be.equal(-1);
+        if (options.pluginType === 'service') expect(files.indexOf(options.pluginName)).to.be.equal(-1);
         checkStructureFile(options);
       } else {
         expect(files.indexOf(options.pluginName)).to.be.not.equal(-1);
@@ -254,15 +265,14 @@
 
   function removeServiceStructureExpects(options, jsonData) {
     expect(jsonData).to.have.property('services');
-    expect(jsonData.services).to.not.have.property('');
+    expect(jsonData.services).to.not.have.property('test');
     removePluginFolder(options);
   }
 
   function removeModuleStructureExpects(options, jsonData) {
     expect(jsonData).to.have.property('modules');
     expect(jsonData.modules).to.have.property('/menu-abcd');
-    expect(jsonData.modules['/menu-abcd']).to.not.have.property('/elements-abcd');
-    removePluginFolder(options);
+    expect(jsonData.modules['/menu-abcd']).to.not.have.property('/demo-abcd');
   }
 
   function checkPluginFolder(options) {
@@ -277,7 +287,6 @@
   function removePluginFolder(options) {
     shell.cd('..');
     shell.cd('./' + options.pluginType + 's');
-    shell.rm('-rf', './' + options.pluginName);
 
     var files = ls().stdout.split('\n');
 
