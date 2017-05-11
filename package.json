@@ -1,6 +1,6 @@
 {
   "name": "koapp-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "King of App Command Line Tools",
   "bin": {
     "koapp": "bin/koapp-cli.js"
@@ -30,7 +30,10 @@
     "jsonfile": "^2.4.0",
     "koapp": "^0.3.0",
     "lodash": "^4.17.4",
-    "shelljs": "^0.7.5"
+    "shelljs": "^0.7.5",
+    "generator-koapp-module": "^1.1.8",
+    "generator-koapp-service": "^1.0.1",
+    "generator-koapp-theme": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

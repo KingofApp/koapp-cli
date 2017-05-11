@@ -12,7 +12,7 @@
   describe('[e2e] koappCli', function() {
     this.timeout(600000);
 
-    describe('init test', function() {
+    describe('init', function() {
       describe('on success', function () {
         it('should create a standard koapp project', function(done) {
           var command = 'koapp init ' + projectNameMock;
@@ -59,19 +59,20 @@
       });
     });
 
-    describe('add test', function() {
-      beforeEach(function(done) {
-        shell.cd(__dirname);
-        done();
-      });
-
+    describe('add', function() {
       describe('on a standard koapp project', function() {
         describe('on success', function() {
+          beforeEach(function(done) {
+            shell.cd(__dirname);
+            done();
+          });
+
           it('should add a service to a standard koapp project', function(done) {
             changeFolderToTest({
               env: 'standard',
               pluginType: 'service',
               pluginName: 'test',
+              action: 'add',
               done: done
             });
           });
@@ -81,6 +82,7 @@
               env: 'standard',
               pluginType: 'theme',
               pluginName: 'candy',
+              action: 'add',
               done: done
             });
           });
@@ -90,6 +92,7 @@
               env: 'standard',
               pluginType: 'spinner',
               pluginName: 'fitness',
+              action: 'add',
               done: done
             });
           });
@@ -98,11 +101,17 @@
 
       describe('on a dev koapp project', function() {
         describe('on success', function() {
+          beforeEach(function(done) {
+            shell.cd(__dirname);
+            done();
+          });
+
           it('should add a service to a dev koapp project', function(done) {
             changeFolderToTest({
               env: 'dev',
               pluginType: 'service',
               pluginName: 'test',
+              action: 'add',
               done: done
             });
           });
@@ -112,6 +121,7 @@
               env: 'dev',
               pluginType: 'theme',
               pluginName: 'candy',
+              action: 'add',
               done: done
             });
           });
@@ -121,6 +131,7 @@
               env: 'dev',
               pluginType: 'spinner',
               pluginName: 'fitness',
+              action: 'add',
               done: done
             });
           });
@@ -128,35 +139,39 @@
       });
     });
 
-    describe('remove test', function() {
-      beforeEach(function(done) {
-        shell.cd(__dirname);
-        done();
-      });
-
+    describe('remove', function() {
       describe('on a standard koapp project', function() {
         describe('on success', function() {
-          it('should remove a module from a standard koapp project', function(done) {
-            var command = 'koapp remove module "/menu-abcd/elements-abcd"';
-            shell.cd('../testProject/com.kingofapp.visualizer/www/modules');
+          beforeEach(function(done) {
+            shell.cd(__dirname);
+            done();
+          });
 
-            testPlugin({
-              pluginType: 'module',
-              pluginName: 'demo',
-              command: command,
+          // xit('should remove a module from a standard koapp project', function(done) {
+          //   changeFolderToTest({
+          //     pluginType: 'module',
+          //     pluginName: '/menu-abcd/elements-abcd',
+          //     command: command,
+          //     action: 'remove',
+          //     env: 'standard',
+          //     done: done
+          //   });
+          // });
+
+          it('should remove a service from a standard koapp project', function(done) {
+            changeFolderToTest({
+              pluginType: 'service',
+              pluginName: 'test',
               action: 'remove',
+              env: 'standard',
               done: done
             });
           });
 
-          it('should remove a service from a standard koapp project', function(done) {
-            var command = 'koapp remove service test';
-            shell.cd('../testProject/com.kingofapp.visualizer/www/modules');
-
-            testPlugin({
+          it('should remove a service from a development koapp project', function(done) {
+            changeFolderToTest({
               pluginType: 'service',
               pluginName: 'test',
-              command: command,
               action: 'remove',
               done: done
             });
@@ -179,10 +194,12 @@
 
   // Helper functions
   function changeFolderToTest(options) {
-    var command = 'koapp add ' + options.pluginType + ' ' + options.pluginName;
+    var command = options.env === 'standard' ?
+                                  'koapp ' + options.action + ' ' + options.pluginType + ' "' + options.pluginName + '"':
+                                  'koapp ' + options.action + ' ' + options.pluginType + ' "' + options.pluginName + '" dev';
     var visualizerFolder = options.env === 'standard' ?
-                                           './../' + projectNameMock + '/com.kingofapp.visualizer/www/' + options.pluginType + 's' :
-                                           './../' + projectNameDevMock + '/com.kingofapp.visualizer.dev/www/' + options.pluginType + 's';
+                                           './../' + projectNameMock :
+                                           './../' + projectNameDevMock;
     shell.cd(visualizerFolder);
 
     options.command = command;
@@ -193,9 +210,13 @@
     shell.exec(options.command, function(err) {
       expect(err).to.be.equal(0);
 
+      var visualizerFolder = options.env === 'standard' ? 'com.kingofapp.visualizer' : 'com.kingofapp.visualizer.dev';
+
+      shell.cd('./' + visualizerFolder + '/www/' + options.pluginType + 's');
       var files = shell.ls().stdout.split('\n');
 
       if (options.action === 'remove') {
+        if (options.pluginType === 'service') expect(files.indexOf(options.pluginName)).to.be.equal(-1);
         checkStructureFile(options);
       } else {
         expect(files.indexOf(options.pluginName)).to.be.not.equal(-1);
@@ -244,15 +265,14 @@
 
   function removeServiceStructureExpects(options, jsonData) {
     expect(jsonData).to.have.property('services');
-    expect(jsonData.services).to.not.have.property('');
+    expect(jsonData.services).to.not.have.property('test');
     removePluginFolder(options);
   }
 
   function removeModuleStructureExpects(options, jsonData) {
     expect(jsonData).to.have.property('modules');
     expect(jsonData.modules).to.have.property('/menu-abcd');
-    expect(jsonData.modules['/menu-abcd']).to.not.have.property('/elements-abcd');
-    removePluginFolder(options);
+    expect(jsonData.modules['/menu-abcd']).to.not.have.property('/demo-abcd');
   }
 
   function checkPluginFolder(options) {
@@ -267,7 +287,6 @@
   function removePluginFolder(options) {
     shell.cd('..');
     shell.cd('./' + options.pluginType + 's');
-    shell.rm('-rf', './' + options.pluginName);
 
     var files = ls().stdout.split('\n');
 
