@@ -30,6 +30,7 @@
     "jsonfile": "^2.4.0",
     "koapp": "^0.3.0",
     "lodash": "^4.17.4",
+    "npm": "^5.0.2",
     "shelljs": "^0.7.5"
   },
   "devDependencies": {
