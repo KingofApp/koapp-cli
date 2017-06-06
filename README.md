@@ -157,5 +157,22 @@ You have the following command tools which you can use:
   Error executing cordova add plugin pluginName
   ~~~
 
+  - ImageMagick not installed or wrong version.
+  ~~~
+  Error: spawn identify ENOENT
+  ~~~
+
+  To fix this error, you have to install ImageMagick. If you already have it installed, you have to uninstall it and install the correct version.
+
+  #### On Windows
+    - Uninstall all previosly installed versions of ImageMagick.
+    - Download the latest version of ImageMagick that constains HDRI on its name. I.e: ImageMagick-7.0.5-10-Q16-HDRI-x64-dll.exe.
+    - Check the "Install legacy utilities"
+    - Install.
+
+  #### On Mac
+    - Delete all previosly installed versions of ImageMagick.
+    - Run the command "brew install imagemagick" on the terminal.
+
 ### License
 MIT © [King of App](https://github.com/KingofApp)
