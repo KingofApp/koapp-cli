@@ -8,7 +8,7 @@
 $ npm install -g koapp-cli
 ```
 ### Requirements
-- ImageMagick installed (*Mac*: `brew install imagemagick`, *Debian/Ubuntu*: `sudo apt-get install imagemagick`, *Windows*: [See here, install "Legacy tools"](http://www.imagemagick.org/script/binary-releases.php#windows))
+- ImageMagick installed (*Mac*: `brew install imagemagick`, *Debian/Ubuntu*: `sudo apt-get install imagemagick`, *Windows*: [ImageMagick HDRI version](http://www.imagemagick.org/script/binary-releases.php#windows))
 
 - [npm](https://www.npmjs.com/). Once you have installed it run the following commands:
 ```bash
