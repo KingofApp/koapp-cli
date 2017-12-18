@@ -9,6 +9,10 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KingofApp/koapp-cli.git"
+  },
   "author": "King of App",
   "contributors": [
     {
