@@ -49,7 +49,7 @@ You have the following command tools which you can use:
   Example:
   ~~~
   koapp create module
-  
+
   koapp create service
   ~~~
 
@@ -119,6 +119,17 @@ You have the following command tools which you can use:
   koapp --help
   ~~~
 
+### Updating Koapp CLI
+
+To update Koapp CLI to a new version, you must update the global package.
+
+```bash
+npm uninstall -g koapp-cli
+npm cache verify
+# if npm version is <= 5 then use `npm cache clean`.
+npm install -g koapp-cli@latest
+```
+
 ### Frequent errors
 
   - Invalid command.
@@ -146,7 +157,7 @@ You have the following command tools which you can use:
 
   Error writing into config.xml file. Please make sure you initialized a project and you are in the right folder.
   ~~~
-  
+
   - Invalid platform on serve or build.
   ~~~
   Invalid platform. Please choose between "ios" or "android".
