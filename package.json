@@ -35,7 +35,8 @@
     "jsonfile": "^2.4.0",
     "koapp": "^0.3.0",
     "npm": "^5.0.2",
-    "shelljs": "^0.7.5"
+    "shelljs": "^0.7.5",
+    "upath": "^1.0.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
